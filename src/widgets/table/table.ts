@@ -4,6 +4,7 @@ import { Company } from '@/entities/company/model/types';
 import { Sort, FilterOptions } from '@/shared/api/types';
 import { COLUMNS } from './constants';
 import { ColDTO } from './types';
+import { companyStore } from '@/entities/company/model/company.store';
 
 @Component({
   selector: 'app-table',
@@ -26,14 +27,16 @@ export class Table {
 
   select(colDTO: ColDTO) {
     const index = this.collumns.findIndex((col) => col.prop === colDTO.prop);
-    if (index > -1) this.collumns[index].isActive = true
+    if (index > -1) this.collumns[index].isActive = true;
   }
 
   unselect() {
-    this.collumns.forEach((col) => col.isActive = false);
+    this.collumns.forEach((col) => (col.isActive = false));
   }
 
-  async ngOnInit(): Promise<void> {
-    this.rows = await this.companyAPI.get(this.page, this.sort, this.filter);
+  constructor() {
+    companyStore.subscribe((v) => {
+      this.rows = v;
+    });
   }
 }
