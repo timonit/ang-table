@@ -4,14 +4,8 @@
 
 
     <div class="pill-group">
-      @for (item of [
-        'Explore the Docs',
-        'Learn with Tutorials',
-        'CLI Docs',
-        'Angular Language Service',
-        'Angular DevTools',
-      ]; track item) {
-        <p>{{ item }}</p>
+      @for (comp of companies; track comp._id) {
+        <p>{{ comp.company }}</p>
       }
     </div>
   </div>
