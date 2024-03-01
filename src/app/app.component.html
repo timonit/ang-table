@@ -1,14 +1,5 @@
 <main class="main">
-  <div class="content">
-    <h1>Hello, {{ title }}</h1>
-
-
-    <div class="pill-group">
-      @for (comp of companies; track comp._id) {
-        <p>{{ comp.company }}</p>
-      }
-    </div>
-  </div>
+  <app-table />
 </main>
 
 <router-outlet />

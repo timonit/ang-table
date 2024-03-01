@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead">
+    <tr class="tr">
+      @for (colName of collumns; track colName) {
+        <th class="th">{{ colName }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody class="tbody">
+    @for (item of rows; track item) {
+      <tr class="tr">
+        @for (prop of collumns; track prop) {
+          <td class="td">{{ item[prop] }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
