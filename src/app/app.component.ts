@@ -1,5 +1,6 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import currency from 'currency.js';
 
 @Component({
   selector: 'app-root',
