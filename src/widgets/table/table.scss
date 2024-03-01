@@ -11,7 +11,7 @@
     text-align: center;
 
     &.col-active {
-      color: rgb(50, 50, 120);
+      color: rgb(50, 50, 150);
     }
   }
 }
@@ -33,6 +33,7 @@
 
     &:hover {
       background-color: rgba(50, 50, 120, .1);
+      color: rgb(50, 50, 150);
     }
   }
 

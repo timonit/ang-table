@@ -2,6 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { CompanyAPI } from '@/entities/company/api/company.api';
 import { Company } from '@/entities/company/model/types';
 import { Sort, FilterOptions } from '@/shared/api/types';
+import { COLUMNS } from './constants';
+import { ColDTO } from './types';
 
 @Component({
   selector: 'app-table',
@@ -12,19 +14,7 @@ import { Sort, FilterOptions } from '@/shared/api/types';
 export class Table {
   companyAPI = new CompanyAPI();
 
-  collumns: string[] = [
-    '_id',
-    'isActive',
-    'balance',
-    'picture',
-    'age',
-    'name',
-    'company',
-    'email',
-    'address',
-    'tags',
-    'favoriteFruit',
-  ];
+  collumns: ColDTO[] = COLUMNS;
 
   rows: { [p: string]: any }[] = [];
 
@@ -34,9 +24,13 @@ export class Table {
 
   filter?: FilterOptions<Company>;
 
-  @HostListener('mouselistener')
-  scroll(event: Event) {
-    console.log('event', event)
+  select(colDTO: ColDTO) {
+    const index = this.collumns.findIndex((col) => col.prop === colDTO.prop);
+    if (index > -1) this.collumns[index].isActive = true
+  }
+
+  unselect() {
+    this.collumns.forEach((col) => col.isActive = false);
   }
 
   async ngOnInit(): Promise<void> {
