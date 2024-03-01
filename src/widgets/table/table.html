@@ -1,0 +1,35 @@
+<table class="table">
+  <thead class="thead">
+    <tr class="tr">
+      @for (col of collumns; track col.prop) {
+        <th
+          class="th"
+          [class]="{'col-active': col.isActive}"
+          (mouseenter)="select(col)"
+          (mouseleave)="unselect()"
+        >{{ col.label }}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody class="tbody">
+    @for (item of rows; track item) {
+      <tr class="tr">
+        @for (col of collumns; track col.prop) {
+          <td
+            class="td"
+            [class]="{'col-active': col.isActive}"
+            (mouseenter)="select(col)"
+            (mouseleave)="unselect()"
+          >{{ item[col.prop] }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <ng-content></ng-content>
+    </tr>
+  </tfoot>
+</table>

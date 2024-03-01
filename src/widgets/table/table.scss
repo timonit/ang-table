@@ -1,0 +1,49 @@
+.table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+  padding: 1em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  border-radius: 15px;
+
+  .td,.th {
+    padding: 1em;
+    text-wrap: nowrap;
+    text-align: center;
+
+    &.col-active {
+      color: rgb(50, 50, 150);
+    }
+  }
+}
+
+.thead {
+  .th {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+
+.tbody {
+  .tr {
+    background-color: rgb(200, 200, 200);
+    transition:
+      color 100ms ease-in-out,
+      background-color 100ms ease-in-out;
+
+    &:hover {
+      background-color: rgba(50, 50, 120, .1);
+      color: rgb(50, 50, 150);
+    }
+  }
+
+  .td:first-child{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  .td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}
