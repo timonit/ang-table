@@ -1,9 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input, NgZone, OnInit } from '@angular/core';
 import { CompanyAPI } from '@/entities/company/api/company.api';
 import { Company } from '@/entities/company/model/types';
 import { Sort, FilterOptions } from '@/shared/api/types';
 import { COLUMNS } from './constants';
 import { ColDTO } from './types';
+import { companyStore } from '@/entities/company/model/company.store';
 
 @Component({
   selector: 'app-table',
@@ -12,28 +13,16 @@ import { ColDTO } from './types';
   styleUrl: './table.scss',
 })
 export class Table {
-  companyAPI = new CompanyAPI();
+  @Input() collumns: ColDTO[] = COLUMNS;
 
-  collumns: ColDTO[] = COLUMNS;
-
-  rows: { [p: string]: any }[] = [];
-
-  page = 1;
-
-  sort: Sort<Company> = {};
-
-  filter?: FilterOptions<Company>;
+  @Input() rows: { [p: string]: any }[] = [];
 
   select(colDTO: ColDTO) {
     const index = this.collumns.findIndex((col) => col.prop === colDTO.prop);
-    if (index > -1) this.collumns[index].isActive = true
+    if (index > -1) this.collumns[index].isActive = true;
   }
 
   unselect() {
-    this.collumns.forEach((col) => col.isActive = false);
-  }
-
-  async ngOnInit(): Promise<void> {
-    this.rows = await this.companyAPI.get(this.page, this.sort, this.filter);
+    this.collumns.forEach((col) => (col.isActive = false));
   }
 }

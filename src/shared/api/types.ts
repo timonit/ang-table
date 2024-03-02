@@ -5,5 +5,5 @@ export type Sort<T> = {
 };
 
 export type FilterOptions<T> = {
-  [p in keyof T]?: T[p][];
+  [p in keyof T]?: T[p];
 };

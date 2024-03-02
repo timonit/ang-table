@@ -21,7 +21,7 @@
             [class]="{'col-active': col.isActive}"
             (mouseenter)="select(col)"
             (mouseleave)="unselect()"
-          >{{ item[col.prop] }}</td>
+          >{{ col.prop === 'name' ? item[col.prop].first + " " + item[col.prop].last : item[col.prop] }}</td>
         }
       </tr>
     }
