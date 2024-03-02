@@ -6,10 +6,12 @@ import { Sort} from '@/shared/api/types';
 export async function sortFeat(sort: Sort<Company>) {
   console.log('start sort', sort);
   const companyAPI = new CompanyAPI();
-  const companies = await companyAPI.get(1, sort);
+  const res = await companyAPI.get(1, sort);
   companyStore.next({
-    companies,
-    page: 1,
-    sort: {},
+    companies: res.list,
+    length: res.length,
+    countPage: res.pageCount,
+    page: res.page,
+    sort,
   });
 }

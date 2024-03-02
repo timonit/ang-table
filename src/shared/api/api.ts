@@ -1,6 +1,13 @@
 import * as L from 'lodash';
 import { Sort, SortType, FilterOptions } from './types';
 
+export type DataList<T> = {
+  length: number;
+  list: T[];
+  page: number;
+  pageCount: number;
+}
+
 export class API<T> {
   dataSRC: any[];
 
@@ -36,17 +43,27 @@ export class API<T> {
     return listData.slice(startIndex, startIndex + this.itemPerPage);
   }
 
-  request(page: number, sort: Sort<T>, filter?: FilterOptions<T>): T[] {
-    let data = [...this.dataSRC];
+  request(page: number, sort: Sort<T>, filter?: FilterOptions<T>): DataList<T> {
+    let list: T[] = [...this.dataSRC];
+    let length = list.length;
 
-    if (filter) data = this.filter(data, filter);
-    data = this.getSortedData(data, sort);
-    data = this.getDataByPage(data, page);
+    if (filter) list = this.filter(list, filter);
 
-    return data as T[];
+    length = list.length;
+    let pageCount = Math.floor(length/this.itemPerPage);
+
+    list = this.getSortedData(list, sort);
+    list = this.getDataByPage(list, page);
+
+    return {
+      list,
+      length,
+      page,
+      pageCount
+    };
   }
 
-  async get(page: number = 0, sort: Sort<T>, filter?: FilterOptions<T>): Promise<T[]> {
+  async get(page: number = 0, sort: Sort<T>, filter?: FilterOptions<T>): Promise<DataList<T>> {
     return new Promise((res, rej) => {
       setTimeout(() => {
         res(this.request(page, sort, filter));

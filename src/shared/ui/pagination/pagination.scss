@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  gap: 1em;
+}
+
+.page {
+  cursor: pointer;
+  background-color: gray;
+  padding: .5em;
+}
+
+.page:hover {
+  background-color: black;
+  color: white;
+}
+
+.current-page {
+  text-decoration: underline;
+}
