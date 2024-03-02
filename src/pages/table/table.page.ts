@@ -1,6 +1,7 @@
 import { CompanyAPI } from '@/entities/company/api/company.api';
 import { CompanyStore, companyStore } from '@/entities/company/model/company.store';
 import { Company } from '@/entities/company/model/types';
+import { filterFeat } from '@/features/table/model/filter.feat';
 import { DataList } from '@/shared/api/api';
 import { Sort, FilterOptions } from '@/shared/api/types';
 import { Pagination } from '@/shared/ui/pagination/pagination';
@@ -69,5 +70,10 @@ export class TablePage {
     this.api
       .get(this.page, this.sort, this.filter)
       .then(this.setStoreData.bind(this));
+
+    setTimeout(() => {
+      console.log('aaaa')
+      filterFeat({age: 30});
+    }, 5000);
   }
 }
