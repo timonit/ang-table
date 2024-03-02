@@ -9,7 +9,7 @@ export async function sortFeat(sort: Sort<Company>) {
   const companies = await companyAPI.get(1, sort);
   companyStore.next({
     companies,
+    sort,
     page: 1,
-    sort: {},
   });
 }
