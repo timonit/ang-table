@@ -1,10 +1,8 @@
-import { Component, HostListener, Input, NgZone, OnInit } from '@angular/core';
-import { CompanyAPI } from '@/entities/company/api/company.api';
-import { Company } from '@/entities/company/model/types';
-import { Sort, FilterOptions } from '@/shared/api/types';
+import { Component, Input } from '@angular/core';
 import { COLUMNS } from './constants';
 import { ColDTO } from './types';
-import { companyStore } from '@/entities/company/model/company.store';
+import { sortFeat } from '@/features/table/model/sort.feat';
+import { SortType } from '@/shared/api/types';
 
 @Component({
   selector: 'app-table',
@@ -24,5 +22,14 @@ export class Table {
 
   unselect() {
     this.collumns.forEach((col) => (col.isActive = false));
+  }
+
+  sortBy(propName: string, sortType: SortType) {
+    this.collumns = this.collumns.map((col) => {
+      if(col.prop === propName) return { ...col, sorted: sortType};
+      return col;
+    });
+
+    sortFeat({[propName]: sortType});
   }
 }

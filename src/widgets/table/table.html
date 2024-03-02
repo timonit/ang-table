@@ -7,7 +7,13 @@
           [class]="{'col-active': col.isActive}"
           (mouseenter)="select(col)"
           (mouseleave)="unselect()"
-        >{{ col.label }}</th>
+        >
+          {{ col.label }}
+          <small
+            (click)="sortBy(col.prop, col.sorted === 'asc' ? 'desc' : 'asc')"
+            class="table-head_col-tool"
+          >{{ col.sorted === 'asc' ? 't' : 'd' }}</small>
+        </th>
       }
     </tr>
   </thead>
@@ -21,7 +27,11 @@
             [class]="{'col-active': col.isActive}"
             (mouseenter)="select(col)"
             (mouseleave)="unselect()"
-          >{{ col.prop === 'name' ? item[col.prop].first + " " + item[col.prop].last : item[col.prop] }}</td>
+          >{{
+              col.prop === 'name'
+                ? item[col.prop]?.first + " " + item[col.prop]?.last
+                : item[col.prop]
+            }}</td>
         }
       </tr>
     }
