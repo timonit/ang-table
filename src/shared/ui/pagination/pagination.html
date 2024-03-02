@@ -1,0 +1,21 @@
+<div class="pagination">
+  <div class="page" (click)="dispatchChangePage(page-1)">prev</div>
+
+  @if (page !== 1) {
+    <div class="page" (click)="dispatchChangePage(1)">1</div>
+  }
+
+  @if (pageCount && pageCount>1 && page > 2) {
+    <div>...</div>
+  }
+
+  <div class="current-page page">{{ page }}</div>
+
+  @if (pageCount && pageCount>1 && page < pageCount) {
+    <div class="page" (click)="dispatchChangePage(page+1)">{{ page + 1 }}</div>
+    <div>...</div>
+    <div class="page" (click)="dispatchChangePage(pageCount)">{{ pageCount }}</div>
+  }
+
+  <div class="page" (click)="dispatchChangePage(page+1)">next</div>
+</div>

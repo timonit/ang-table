@@ -1,3 +1,11 @@
 <div>
-  <app-table [rows]="data" />
+  <app-table [rows]="data" >
+    <app-pagination
+      [page]="pagination.page"
+      [hasPrevButton]="pagination.hasPrevButton"
+      [hasNextButton]="pagination.hasNextButton"
+      [pageCount]="pagination.pageCount"
+      (changePage)="changePage($event)"
+    />
+  </app-table>
 </div>
