@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -12,6 +13,7 @@ import {
   standalone: true,
   templateUrl: './pagination.html',
   styleUrl: './pagination.scss',
+  imports: [NgIf]
 })
 export class Pagination implements OnChanges {
   @Input() hasPrevButton?: boolean = false;
