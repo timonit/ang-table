@@ -4,7 +4,7 @@ import { Company } from '@/entities/company/model/types';
 import { FilterOptions } from '@/shared/api/types';
 
 export async function filterFeat(filter: FilterOptions<Company>) {
-  console.log('start sort', filter);
+  console.log('start filter', filter);
   const companyAPI = new CompanyAPI();
   const sort = companyStore.value.sort;
   const { list, length, pageCount, page } = await companyAPI.get(1, sort, filter);

@@ -1,0 +1,43 @@
+<form (submit)="submit($event)" (reset)="reset($event)" class="filter-form">
+  <div class="form-control">
+    <label>balance</label>
+    <input [formControl]="filter.controls.balance" type="number" placeholder="balance" />
+  </div>
+  <div class="form-control">
+    <label>age</label>
+    <input [formControl]="filter.controls.age" type="number" placeholder="age" />
+  </div>
+  <div class="form-control">
+    <label>company</label>
+    <input [formControl]="filter.controls.company" type="text" placeholder="company" />
+  </div>
+  <div class="form-control">
+    <label>email</label>
+    <input [formControl]="filter.controls.email" type="email" placeholder="email" />
+  </div>
+  <div class="form-control">
+    <label>address</label>
+    <input [formControl]="filter.controls.address" type="text" placeholder="address" />
+  </div>
+  <div class="form-control">
+    <label>name</label>
+    <input [formControl]="filter.controls.name" type="text" placeholder="firstname lastname" />
+  </div>
+  <div class="form-control">
+    <label>tags</label>
+    <input [formControl]="filter.controls.tags" type="text" placeholder="tag tag tag..." />
+  </div>
+  <div class="form-control">
+    <label>favorite fruit</label>
+    <input [formControl]="filter.controls.favoriteFruit" type="text" placeholder="favorite fruit" />
+  </div>
+  <div class="form-control form-control__horizontal">
+    <label>is active</label>
+    <input [formControl]="filter.controls.isActive" type="checkbox"/>
+  </div>
+
+  <div class="btn-group">
+    <button type="submit">filter</button>
+    <button type="reset">reset</button>
+  </div>
+</form>
