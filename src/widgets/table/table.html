@@ -1,10 +1,23 @@
+<div class="col-panel">
+  @for (col of collumns; track col.prop) {
+    <div>
+      <label>{{ col.label }}</label>
+      <input
+        type="checkbox"
+        [checked]="!col.hide"
+        (change)="collapseCollumn(col.prop, col.hide ? false : true)"
+      >
+    </div>
+  }
+</div>
+
 <table class="table">
   <thead class="thead">
     <tr class="tr">
       @for (col of collumns; track col.prop) {
         <th
           class="th"
-          [class]="{'col-active': col.isActive}"
+          [class]="{'col-active': col.isActive, 'hide': col.hide}"
           (mouseenter)="select(col)"
           (mouseleave)="unselect()"
         >
@@ -25,7 +38,7 @@
         @for (col of collumns; track col.prop) {
           <td
             class="td"
-            [class]="{'col-active': col.isActive}"
+            [class]="{'col-active': col.isActive, 'hide': col.hide}"
             (mouseenter)="select(col)"
             (mouseleave)="unselect()"
           >{{

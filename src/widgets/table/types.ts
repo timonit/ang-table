@@ -3,4 +3,5 @@ export type ColDTO = {
   prop: string;
   isActive: boolean;
   sorted?: 'asc' | 'desc';
+  hide?: boolean;
 }

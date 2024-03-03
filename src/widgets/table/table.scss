@@ -1,7 +1,17 @@
+.col-panel {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .table {
   border-collapse: separate;
   border-spacing: 0 1em;
   padding: 1em;
+  width: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, .2);
   border-radius: 15px;
 
@@ -64,4 +74,8 @@
   .td:first-child {
     column-span: 2;
   }
+}
+
+.hide {
+  display: none;
 }
