@@ -25,4 +25,11 @@
     (click)="dispatchChangePage(page+1)"
     [disabled]="pageCount && page >= pageCount"
   >next</button>
+
+  <div class="btn-group">
+    <input #countItems type="number" [value]="itemsPerPage">
+    <button class="page" type="button" (click)="setItemPage(countItems.value)">
+      items per page
+    </button>
+  </div>
 </div>

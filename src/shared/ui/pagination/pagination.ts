@@ -26,8 +26,15 @@ export class Pagination implements OnChanges {
 
   @Output('changePage') changePage = new EventEmitter<number>();
 
+  @Input() itemsPerPage = 10;
+  @Output() changeItemsPerPage = new EventEmitter<number>();
+
   dispatchChangePage(page: number) {
     if (this.changePage) this.changePage.emit(page);
+  }
+
+  setItemPage(count: string) {
+    this.changeItemsPerPage.emit(Number(count));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
