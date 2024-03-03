@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { COLUMNS } from './constants';
 import { ColDTO } from './types';
 import { sortFeat } from '@/features/table/model/sort.feat';
@@ -16,6 +17,15 @@ export class Table {
   @Input() collumns: ColDTO[] = COLUMNS;
 
   @Input() rows: { [p: string]: any }[] = [];
+
+  collapseCollumn(colName: string, value: boolean) {
+    this.collumns.forEach((col, index) => {
+      if (colName === col.prop) {
+        console.log('change col')
+        this.collumns[index].hide = value;
+      }
+    })
+  }
 
   select(colDTO: ColDTO) {
     const index = this.collumns.findIndex((col) => col.prop === colDTO.prop);
