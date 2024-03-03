@@ -1,21 +1,28 @@
 <div class="pagination">
-  <div class="page" (click)="dispatchChangePage(page-1)">prev</div>
+  <button
+    class="page"
+    (click)="dispatchChangePage(page-1)"
+    [disabled]="page < 2"
+  >prev</button>
 
   @if (page !== 1) {
-    <div class="page" (click)="dispatchChangePage(1)">1</div>
+    <button class="page" (click)="dispatchChangePage(1)">1</button>
   }
 
   @if (pageCount && pageCount>1 && page > 2) {
     <div>...</div>
   }
 
-  <div class="current-page page">{{ page }}</div>
+  <button class="current-page page">{{ page }}</button>
 
-  @if (pageCount && pageCount>1 && page < pageCount) {
-    <div class="page" (click)="dispatchChangePage(page+1)">{{ page + 1 }}</div>
-    <div>...</div>
-    <div class="page" (click)="dispatchChangePage(pageCount)">{{ pageCount }}</div>
+  @if (pageCount && pageCount>1 && page < pageCount+1) {
+    <div *ngIf="page < pageCount">...</div>
+    <button class="page" (click)="dispatchChangePage(pageCount+1)">{{ pageCount+1 }}</button>
   }
 
-  <div class="page" (click)="dispatchChangePage(page+1)">next</div>
+  <button
+    class="page"
+    (click)="dispatchChangePage(page+1)"
+    [disabled]="pageCount && page >= pageCount"
+  >next</button>
 </div>

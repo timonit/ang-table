@@ -1,6 +1,8 @@
 import { CompanyAPI } from '@/entities/company/api/company.api';
 import { CompanyStore, companyStore } from '@/entities/company/model/company.store';
 import { Company } from '@/entities/company/model/types';
+import { filterFeat } from '@/features/table/model/filter.feat';
+import { Filter } from '@/features/table/ui/filter/filter';
 import { DataList } from '@/shared/api/api';
 import { Sort, FilterOptions } from '@/shared/api/types';
 import { Pagination } from '@/shared/ui/pagination/pagination';
@@ -11,7 +13,7 @@ import { Component, Input } from '@angular/core';
   selector: 'table-page',
   standalone: true,
   templateUrl: './table.page.html',
-  imports: [Table, Pagination],
+  imports: [Table, Pagination, Filter],
   styleUrl: './table.page.scss',
 })
 export class TablePage {
