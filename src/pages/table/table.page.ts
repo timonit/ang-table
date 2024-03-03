@@ -52,6 +52,13 @@ export class TablePage {
       .then(this.setStoreData.bind(this));
   }
 
+  changeItemsPerPage(count: number) {
+    this.api.itemPerPage = count;
+    this.api
+      .get(1, this.sort, this.filter)
+      .then(this.setStoreData.bind(this));
+  }
+
   constructor() {
     this.store.subscribe((v) => {
       console.log('asdasd', v);

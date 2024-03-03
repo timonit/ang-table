@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   gap: 1em;
+  height: 50px;
 }
 
 .page {
@@ -16,4 +17,14 @@
 
 .current-page {
   text-decoration: underline;
+}
+
+.btn-group {
+  display: flex;
+  margin-left: 1em;
+  height: 100%;
+
+  * {
+    text-wrap: nowrap;
+  }
 }
