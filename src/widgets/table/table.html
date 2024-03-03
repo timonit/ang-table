@@ -9,10 +9,11 @@
           (mouseleave)="unselect()"
         >
           {{ col.label }}
-          <small
+          <up-icon
             (click)="sortBy(col.prop, col.sorted === 'asc' ? 'desc' : 'asc')"
             class="table-head_col-tool"
-          >{{ col.sorted === 'asc' ? 't' : 'd' }}</small>
+            [class]="{reverse: col.sorted === 'asc'}"
+          />
         </th>
       }
     </tr>
@@ -37,9 +38,11 @@
     }
   </tbody>
 
-  <tfoot>
-    <tr>
-      <ng-content />
+  <tfoot class="tfoot">
+    <tr class="tr">
+      <td class="td" colspan="5">
+        <ng-content />
+      </td>
     </tr>
   </tfoot>
 </table>

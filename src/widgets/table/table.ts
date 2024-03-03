@@ -3,12 +3,14 @@ import { COLUMNS } from './constants';
 import { ColDTO } from './types';
 import { sortFeat } from '@/features/table/model/sort.feat';
 import { SortType } from '@/shared/api/types';
+import { UpIcon } from './sort-icons/up/up.icon';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   templateUrl: './table.html',
   styleUrl: './table.scss',
+  imports: [UpIcon]
 })
 export class Table {
   @Input() collumns: ColDTO[] = COLUMNS;
