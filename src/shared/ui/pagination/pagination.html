@@ -1,35 +1,37 @@
 <div class="pagination">
-  <button
-    class="page"
-    (click)="dispatchChangePage(page-1)"
-    [disabled]="page < 2"
-  >prev</button>
-
-  @if (page !== 1) {
-    <button class="page" (click)="dispatchChangePage(1)">1</button>
-  }
-
-  @if (pageCount && pageCount>1 && page > 2) {
-    <div>...</div>
-  }
-
-  <button class="current-page page">{{ page }}</button>
-
-  @if (pageCount && pageCount>1 && page < pageCount+1) {
-    <div *ngIf="page < pageCount">...</div>
-    <button class="page" (click)="dispatchChangePage(pageCount+1)">{{ pageCount+1 }}</button>
-  }
-
-  <button
-    class="page"
-    (click)="dispatchChangePage(page+1)"
-    [disabled]="pageCount && page >= pageCount"
-  >next</button>
-
   <div class="btn-group">
+    <button
+      class="page"
+      (click)="dispatchChangePage(page-1)"
+      [disabled]="page < 2"
+    >prev</button>
+
+    @if (page !== 1) {
+      <button class="page" (click)="dispatchChangePage(1)">1</button>
+    }
+
+    @if (pageCount && pageCount>1 && page > 2) {
+      <button disabled>...</button>
+    }
+
+    <button class="current-page page">{{ page }}</button>
+
+    @if (pageCount && pageCount>1 && page < pageCount+1) {
+      <button disabled *ngIf="page < pageCount">...</button>
+      <button class="page" (click)="dispatchChangePage(pageCount+1)">{{ pageCount+1 }}</button>
+    }
+
+    <button
+      class="page"
+      (click)="dispatchChangePage(page+1)"
+      [disabled]="pageCount && page >= pageCount"
+    >next</button>
+  </div>
+
+  <div class="btn-group items-count-per-page">
     <input #countItems type="number" [value]="itemsPerPage">
     <button class="page" type="button" (click)="setItemPage(countItems.value)">
-      items per page
+      set count row per page
     </button>
   </div>
 </div>

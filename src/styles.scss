@@ -1,8 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-
 }
 
 body {
   font-family: sans-serif;
+}
+
+button {
+  padding: .5rem;
+  background-color: rgba(10,10,10, .8);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 100ms ease-in-out,
+    color 100ms ease-in-out;
+
+  &:hover {
+    background-color: rgba(50, 50, 120, .1);
+    color: #000;
+  }
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+
+  button, input {
+    border-radius: 0;
+  }
+
+  button:disabled {
+    background-color: rgba(10,10,10, .4);
+    color: rgba(10,10,10, .4);
+
+    &:hover {
+      background-color: rgba(10,10,10, .4);
+      color: rgba(10,10,10, .4);
+    }
+  }
+
+  button:first-child, input:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  button:last-child, input:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+input {
+  padding: .5rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgba(10,10,10, .8);
+  color: #fff;
+
+  &::placeholder {
+    color: rgb(180,180,180);
+  }
 }
