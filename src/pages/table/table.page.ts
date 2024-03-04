@@ -26,6 +26,8 @@ export class TablePage {
 
   sort: Sort<Company> = {};
 
+  loading: boolean = false;
+
   filter?: FilterOptions<Company>;
 
   pagination = {
@@ -35,6 +37,21 @@ export class TablePage {
     page: 1,
   }
 
+  fetchData(page: number, sort: Sort<Company>, filter?: FilterOptions<Company>) {
+    this.store.next({
+      sort: this.store.value.sort,
+      filter: this.store.value.filter,
+      companies: this.store.value.companies,
+      length: this.store.value.length,
+      page: this.store.value.page,
+      countPage: this.store.value.countPage,
+      fetching: true,
+    });
+    this.api
+      .get(page, sort, filter)
+      .then(this.setStoreData.bind(this));
+  }
+
   setStoreData(data: DataList<Company>) {
     this.store.next({
       sort: this.sort,
@@ -42,30 +59,27 @@ export class TablePage {
       companies: data.list,
       length: data.length,
       page: data.page,
-      countPage: data.pageCount
+      countPage: data.pageCount,
+      fetching: false,
     });
   }
 
   changePage(page:number) {
-    this.api
-      .get(page, this.sort, this.filter)
-      .then(this.setStoreData.bind(this));
+    this.fetchData(page, this.sort, this.filter);
   }
 
   changeItemsPerPage(count: number) {
     this.api.itemPerPage = count;
-    this.api
-      .get(1, this.sort, this.filter)
-      .then(this.setStoreData.bind(this));
+    this.fetchData(1, this.sort, this.filter);
   }
 
   constructor() {
     this.store.subscribe((v) => {
-      console.log('asdasd', v);
       this.data = v.companies;
       this.page = v.page;
       this.sort = v.sort;
       this.filter = v.filter;
+      this.loading = v.fetching;
 
       this.pagination = {
         hasPrevButton: v.page > 1,
@@ -75,8 +89,6 @@ export class TablePage {
       }
     });
 
-    this.api
-      .get(this.page, this.sort, this.filter)
-      .then(this.setStoreData.bind(this));
+    this.fetchData(this.page, this.sort, this.filter);
   }
 }

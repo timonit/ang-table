@@ -9,6 +9,7 @@ export type CompanyStore = {
   length: number,
   sort: Sort<Company>;
   filter?: FilterOptions<Company>;
+  fetching: boolean;
 }
 
 export const companyStore = new BehaviorSubject<CompanyStore>({
@@ -17,4 +18,5 @@ export const companyStore = new BehaviorSubject<CompanyStore>({
   countPage: 1,
   length: 0,
   sort: {},
+  fetching: false,
 });

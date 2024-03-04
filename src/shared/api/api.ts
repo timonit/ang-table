@@ -11,7 +11,15 @@ export type DataList<T> = {
 export class API<T> {
   dataSRC: any[];
 
-  itemPerPage = 10;
+  static itemPerPage = 10;
+
+  set itemPerPage(value: number) {
+    API.itemPerPage = value
+  };
+
+  get itemPerPage() {
+    return API.itemPerPage;
+  };
 
   setItemPerPage(val: number) {
     this.itemPerPage = val;
@@ -67,7 +75,7 @@ export class API<T> {
     return new Promise((res, rej) => {
       setTimeout(() => {
         res(this.request(page, sort, filter));
-      }, Math.random()*3000);
+      }, Math.random()*2000);
     })
   }
 }

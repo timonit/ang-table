@@ -1,6 +1,6 @@
 <div class="table-page">
   <app-filter />
-  <app-table [rows]="data" >
+  <app-table [rows]="data" [loading]="loading" >
     <app-pagination
       [page]="pagination.page"
       [hasPrevButton]="pagination.hasPrevButton"
