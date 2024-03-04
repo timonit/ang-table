@@ -16,12 +16,13 @@ import { UpIcon } from './sort-icons/up/up.icon';
 export class Table {
   @Input() collumns: ColDTO[] = COLUMNS;
 
+  @Input() loading: boolean = false;
+
   @Input() rows: { [p: string]: any }[] = [];
 
   collapseCollumn(colName: string, value: boolean) {
     this.collumns.forEach((col, index) => {
       if (colName === col.prop) {
-        console.log('change col')
         this.collumns[index].hide = value;
       }
     })

@@ -1,3 +1,9 @@
+@if (loading) {
+  <div class="loading">
+    <div class="spinner"></div>
+  </div>
+}
+
 <div class="col-panel">
   @for (col of collumns; track col.prop) {
     <div>
@@ -11,51 +17,55 @@
   }
 </div>
 
-<table class="table">
-  <thead class="thead">
-    <tr class="tr">
-      @for (col of collumns; track col.prop) {
-        <th
-          class="th"
-          [class]="{'col-active': col.isActive, 'hide': col.hide}"
-          (mouseenter)="select(col)"
-          (mouseleave)="unselect()"
-        >
-          {{ col.label }}
-          <up-icon
-            (click)="sortBy(col.prop, col.sorted === 'asc' ? 'desc' : 'asc')"
-            class="table-head_col-tool"
-            [class]="{reverse: col.sorted === 'asc'}"
-          />
-        </th>
-      }
-    </tr>
-  </thead>
+<div class="table-container">
 
-  <tbody class="tbody">
-    @for (item of rows; track item) {
+  <table class="table">
+    <thead class="thead">
       <tr class="tr">
         @for (col of collumns; track col.prop) {
-          <td
-            class="td"
+          <th
+            class="th"
             [class]="{'col-active': col.isActive, 'hide': col.hide}"
             (mouseenter)="select(col)"
             (mouseleave)="unselect()"
-          >{{
-              col.prop === 'name'
-                ? item[col.prop]?.first + " " + item[col.prop]?.last
-                : item[col.prop]
-            }}</td>
+          >
+            {{ col.label }}
+            <up-icon
+              (click)="sortBy(col.prop, col.sorted === 'asc' ? 'desc' : 'asc')"
+              class="table-head_col-tool"
+              [class]="{reverse: col.sorted === 'asc'}"
+            />
+          </th>
         }
       </tr>
-    }
-  </tbody>
+    </thead>
 
-  <tfoot class="tfoot">
-    <tr class="tr">
-      <td class="td" colspan="5">
-        <ng-content />
-      </td>
-    </tr>
-  </tfoot>
-</table>
+    <tbody class="tbody">
+      @for (item of rows; track item) {
+        <tr class="tr">
+          @for (col of collumns; track col.prop) {
+            <td
+              class="td"
+              [class]="{'col-active': col.isActive, 'hide': col.hide}"
+              (mouseenter)="select(col)"
+              (mouseleave)="unselect()"
+            >{{
+                col.prop === 'name'
+                  ? item[col.prop]?.first + " " + item[col.prop]?.last
+                  : item[col.prop]
+              }}</td>
+          }
+        </tr>
+      }
+    </tbody>
+
+    <tfoot class="tfoot">
+      <tr class="tr">
+        <td class="td" colspan="5">
+          <ng-content />
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>

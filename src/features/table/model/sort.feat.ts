@@ -4,10 +4,18 @@ import { Company } from '@/entities/company/model/types';
 import { Sort} from '@/shared/api/types';
 
 export async function sortFeat(sort: Sort<Company>) {
-  console.log('start sort', sort);
-  const companyAPI = new CompanyAPI();
   const filter = companyStore.value.filter;
-  console.log('sort filter', filter)
+  companyStore.next({
+    sort,
+    filter,
+    companies: companyStore.value.companies,
+    length: companyStore.value.length,
+    countPage: companyStore.value.countPage,
+    page: companyStore.value.page,
+    fetching: true,
+  });
+
+  const companyAPI = new CompanyAPI();
   const res = await companyAPI.get(1, sort, filter);
   companyStore.next({
     companies: res.list,
@@ -16,5 +24,6 @@ export async function sortFeat(sort: Sort<Company>) {
     page: res.page,
     sort,
     filter,
+    fetching: false,
   });
 }

@@ -1,21 +1,14 @@
 import { NgIf } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
   standalone: true,
   templateUrl: './pagination.html',
   styleUrl: './pagination.scss',
-  imports: [NgIf]
+  imports: [NgIf],
 })
-export class Pagination implements OnChanges {
+export class Pagination {
   @Input() hasPrevButton?: boolean = false;
 
   @Input() hasNextButton?: boolean = false;
@@ -35,9 +28,5 @@ export class Pagination implements OnChanges {
 
   setItemPage(count: string) {
     this.changeItemsPerPage.emit(Number(count));
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
   }
 }
